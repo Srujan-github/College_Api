@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import in.srujan.college_api.dao.CollegeDAO;
@@ -19,6 +21,10 @@ import in.srujan.college_api.model.CourseFee;
 public class CollegeController {
 @Autowired(required = false)	
 private CollegeDAO cDAO;
+@ResponseBody@RequestMapping("/")
+public String start() {
+	return "Your Application is Working";
+}
 @GetMapping("/colleges")
 public List<Colleges> getColleges(){
 	return cDAO.getAll();

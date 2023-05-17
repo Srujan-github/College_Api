@@ -20,8 +20,8 @@ public class CollegeDAOImpl implements CollegeDAO {
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource=new DriverManagerDataSource();
 		dataSource.setUsername("root");
-		dataSource.setPassword("root");
-		dataSource.setUrl("jdbc:mysql://localhost:3305/collegeapi");
+		dataSource.setPassword("mp2KSf9WDKGi0aRSVhMJ");
+		dataSource.setUrl("jdbc:mysql://containers-us-west-144.railway.app:6742/railway");
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		return dataSource;
 	}
