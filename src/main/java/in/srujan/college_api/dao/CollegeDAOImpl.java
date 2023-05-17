@@ -11,6 +11,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Repository;
 
 import in.srujan.college_api.model.Colleges;
+import in.srujan.college_api.model.CourseFee;
  
  
 @Repository
@@ -27,7 +28,7 @@ public class CollegeDAOImpl implements CollegeDAO {
 	@Override
 	public int save(Colleges college) {
 		// TODO Auto-generated method stub
-		return 0;
+		return jdbcTemplate.update("INSERT INTO tbl_colleges(clg_name,course_name,course_fee,course_dur,accommodation,accommodation_fee)values( ?,?,?,?,?,?)",new Object[] {college.getClg_name(),college.getCourse_name(),college.getCourse_fee(),college.getCourse_dur(),college.getAccommodation(),college.getAccommodation_fee()});
 	}
 
 	@Override
@@ -42,6 +43,19 @@ public class CollegeDAOImpl implements CollegeDAO {
 		// TODO Auto-generated method stub
 		return jdbcTemplate.query("SELECT * FROM tbl_colleges WHERE course_name=?",new BeanPropertyRowMapper<Colleges>(Colleges.class),name);
 		 
+	}
+	@Override
+	public List<CourseFee> getAllCourseFee() {
+		return jdbcTemplate.query("SELECT id,course_fee FROM tbl_colleges",new BeanPropertyRowMapper<CourseFee>(CourseFee.class));
+	}
+	@Override
+	public int delete(int id) {
+		
+		return jdbcTemplate.update("DELETE FROM tbl_colleges WHERE id=?",id);
+	}
+	@Override
+	public int update(Colleges college, int id) {
+		return jdbcTemplate.update("UPDATE tbl_colleges SET clg_name=?, course_name=?, course_fee=? ,course_dur=? ,accommodation=?, accommodation_fee=? WHERE id=?",new Object[] {college.getClg_name(),college.getCourse_name(),college.getCourse_fee(),college.getCourse_dur(),college.getAccommodation(),college.getAccommodation_fee(),id});
 	}
 
 }
